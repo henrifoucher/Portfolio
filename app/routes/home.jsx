@@ -1,9 +1,23 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { useNavigate, useLoaderData } from 'react-router';
 import { mat4, quat, vec2, vec3 } from 'gl-matrix';
 import { PerformanceMonitor, VisibilityManager, ResourceManager } from '../utils/performanceUtils.js';
-import './../styles/InfiniteMenu.css';
-import ScrambleText from './ScrambleText.jsx';
+import '../styles/home.css';
+import ScrambleText from '../components/ScrambleText.jsx';
+
+export async function loader() {
+  try {
+    const response = await fetch('/projects.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const projects = await response.json();
+    return { projects };
+  } catch (error) {
+    console.error('Failed to load projects:', error);
+    return { projects: [] };
+  }
+}
 
 const discVertShaderSource = `#version 300 es
 
@@ -1170,7 +1184,9 @@ const defaultItems = [
   }
 ];
 
-export default function InfiniteMenu({ items = [] }) {
+export default function InfiniteMenu() {
+  const { projects } = useLoaderData();
+  const items = useMemo(() => projects || [], [projects]);
   const canvasRef = useRef(null);
   const sketchRef = useRef(null);
   const navigate = useNavigate();
@@ -1237,7 +1253,7 @@ export default function InfiniteMenu({ items = [] }) {
 
     if (projectIndex !== -1) {
       // Navigate to the project detail page using the index
-      navigate(`/project/${projectIndex}`);
+      navigate(`/projects/${projectIndex}`);
     } else if (activeItem.link) {
       // Fallback to external link if it exists
       if (activeItem.link.startsWith('http')) {
