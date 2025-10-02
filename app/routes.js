@@ -6,6 +6,6 @@ const base = viteConfig.base ?? '/';
 export default [
   ...prefix(base, [
     index("routes/_index.jsx"),
-    route("/projects/:id", "routes/projectDetail.jsx"),
+    route("/project/:id", "routes/projectDetail.jsx"),
   ])
 ];

@@ -16,7 +16,7 @@ type Pages = {
   "/Portfolio": {
     params: {};
   };
-  "/Portfolio/projects/:id": {
+  "/Portfolio/project/:id": {
     params: {
       "id": string;
     };
@@ -26,7 +26,7 @@ type Pages = {
 type RouteFiles = {
   "root.jsx": {
     id: "root";
-    page: "/" | "/Portfolio" | "/Portfolio/projects/:id";
+    page: "/" | "/Portfolio" | "/Portfolio/project/:id";
   };
   "routes/_index.jsx": {
     id: "routes/_index";
@@ -34,6 +34,6 @@ type RouteFiles = {
   };
   "routes/projectDetail.jsx": {
     id: "routes/projectDetail";
-    page: "/Portfolio/projects/:id";
+    page: "/Portfolio/project/:id";
   };
 };

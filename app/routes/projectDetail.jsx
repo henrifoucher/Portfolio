@@ -1,30 +1,25 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router';
+import { Link, useLoaderData } from 'react-router';
 import Border from '../components/Border.jsx';
 import ScrambleText from '../components/ScrambleText.jsx';
 import '../styles/projectDetail.css';
 
-export default function ProjectDetail() {
-  const { id } = useParams();
-  const [project, setProject] = useState(null);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch('./projects.json')
-      .then(res => res.json())
-      .then(data => {
-        const foundProject = data[parseInt(id)] || data.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === id);
-        setProject(foundProject);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, [id]);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
+export async function clientLoader({ params }) {
+  try {
+    const response = await fetch('./projects.json');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const projects = await response.json();
+    const project = projects[parseInt(params.id)] || projects.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === params.id);
+    return { project, projects };
+  } catch (error) {
+    console.error('Failed to load project:', error);
+    return { project: null, projects: [] };
   }
+}
+
+export default function ProjectDetail() {
+  const { project } = useLoaderData();
 
   if (!project) {
     return (

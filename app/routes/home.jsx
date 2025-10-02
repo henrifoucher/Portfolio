@@ -1253,7 +1253,7 @@ export default function InfiniteMenu() {
 
     if (projectIndex !== -1) {
       // Navigate to the project detail page using the index
-      navigate(`/projects/${projectIndex}`);
+      navigate(`/project/${projectIndex}`);
     } else if (activeItem.link) {
       // Fallback to external link if it exists
       if (activeItem.link.startsWith('http')) {
