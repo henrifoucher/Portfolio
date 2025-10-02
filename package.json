@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "react-router build",
+    "build:deploy": "react-router build && echo '<!DOCTYPE html><html><head><meta charset=\"utf-8\"><script>sessionStorage.redirect=location.href</script><meta http-equiv=\"refresh\" content=\"0;URL=\"></head><body></body></html>' > build/client/404.html",
     "dev": "react-router dev --host",
     "dev:test": "react-router dev --port 5174",
     "test:ui": "playwright test --ui",
