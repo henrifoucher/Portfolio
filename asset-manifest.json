@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/Portfolio/static/css/main.c4b32180.css",
+    "main.js": "/Portfolio/static/js/main.7496f3cc.js",
+    "static/media/Thedus-StencilCondensed.otf": "/Portfolio/static/media/Thedus-StencilCondensed.b248858ff1bba18e33d1.otf",
+    "static/media/Thedus-StencilWide.otf": "/Portfolio/static/media/Thedus-StencilWide.ebcbdf4e3ce9d2b93519.otf",
+    "static/media/Thedus-CondensedLight.otf": "/Portfolio/static/media/Thedus-CondensedLight.ae717d418fc8f47c05fd.otf",
+    "static/media/Thedus-WideLight.otf": "/Portfolio/static/media/Thedus-WideLight.addb98986f951e8ed1b4.otf",
+    "static/media/Thedus-Wide.otf": "/Portfolio/static/media/Thedus-Wide.9caa723153e05f3a66f9.otf",
+    "index.html": "/Portfolio/index.html",
+    "main.c4b32180.css.map": "/Portfolio/static/css/main.c4b32180.css.map",
+    "main.7496f3cc.js.map": "/Portfolio/static/js/main.7496f3cc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c4b32180.css",
+    "static/js/main.7496f3cc.js"
+  ]
+}
