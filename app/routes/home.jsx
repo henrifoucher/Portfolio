@@ -5,6 +5,7 @@ import { PerformanceMonitor, VisibilityManager, ResourceManager } from '../utils
 import '../styles/home.css';
 import ScrambleText from '../components/ScrambleText.jsx';
 import LoadingScreen from '../components/LoadingScreen.jsx';
+import { applyScrambleToAllText } from '../utils/textScramble.js';
 
 export async function clientLoader() {
   try {
@@ -1254,6 +1255,24 @@ export default function InfiniteMenu() {
         // Small delay to ensure smooth transition
         setTimeout(() => {
           setIsLoading(false);
+          // Apply text scramble effect to all text elements after loading
+          setTimeout(() => {
+            applyScrambleToAllText({
+              duration: 0.8,
+              delay: 0,
+              selectors: [
+                'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
+                'p', 'span', 'a', 'button',
+                '.title', '.japanese', '.status',
+                '.info__title', '.info__description',
+                '.project-title',
+                '.project-year', '.project-class',
+                '.back-button', '.external-link',
+                '.face-title', '.action-button'
+              ],
+              excludeSelectors: ['.loading', '.loading-screen *', '.class__name', '.year__number', '.class', '.name']
+            });
+          }, 200);
         }, 500);
         
       } catch (err) {
