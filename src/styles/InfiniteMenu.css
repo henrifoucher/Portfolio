@@ -1,0 +1,100 @@
+#infinite-grid-menu-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  /* Performance optimizations */
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+#infinite-grid-menu-canvas:active {
+  cursor: grabbing;
+}
+
+.face-title {
+  position: absolute;
+  top: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  cursor: default;
+  z-index: 10;
+  font-size: 9rem;
+  font-family: var(--font-thedus-wide-light);
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+}
+
+.action-button {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  font-size: 2.5rem;
+  color: #000;
+  user-select: none;
+  font-family: var(--font-thedus-wide-light);
+  padding: 0 .5rem .5rem .5rem;
+}
+
+.action-button::before {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 0;
+  height: 0;
+  content: '';
+  border-bottom: 1.5rem solid #fff;
+  border-left: 0.75rem solid #fff;
+  border-top: 1.5rem solid transparent;
+  border-right: 0.75rem solid transparent;
+}
+
+.action-button::after {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 0;
+  height: 0;
+  content: '';
+  border-bottom: 1.5rem solid #fff;
+  border-right: 0.75rem solid #fff;
+  border-top: 1.5rem solid transparent;
+  border-left: 0.75rem solid transparent;
+}
+
+.face-title.inactive,
+.action-button.inactive {
+  opacity: 0;
+  transform: translateX(-50%) translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.face-title.active,
+.action-button.active {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.action-button.inactive {
+  transform: translateX(-50%) translateY(10px) scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.action-button.active {
+  transform: translateX(-50%) translateY(0) scale(1);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
