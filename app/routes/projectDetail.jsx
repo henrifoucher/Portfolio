@@ -10,7 +10,7 @@ export default function ProjectDetail() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('/projects.json')
+    fetch('./projects.json')
       .then(res => res.json())
       .then(data => {
         const foundProject = data[parseInt(id)] || data.find(p => p.title.toLowerCase().replace(/\s+/g, '-') === id);

@@ -1,1 +1,1 @@
-export { default } from './home.jsx';
+export { default, clientLoader } from './home.jsx';

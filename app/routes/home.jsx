@@ -5,9 +5,9 @@ import { PerformanceMonitor, VisibilityManager, ResourceManager } from '../utils
 import '../styles/home.css';
 import ScrambleText from '../components/ScrambleText.jsx';
 
-export async function loader() {
+export async function clientLoader() {
   try {
-    const response = await fetch('/projects.json');
+    const response = await fetch('./projects.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -1185,8 +1185,8 @@ const defaultItems = [
 ];
 
 export default function InfiniteMenu() {
-  const { projects } = useLoaderData();
-  const items = useMemo(() => projects || [], [projects]);
+  const loaderData = useLoaderData();
+  const items = useMemo(() => loaderData?.projects || [], [loaderData?.projects]);
   const canvasRef = useRef(null);
   const sketchRef = useRef(null);
   const navigate = useNavigate();
