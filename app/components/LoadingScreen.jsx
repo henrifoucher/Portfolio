@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/LoadingScreen.css';
+import '../styles/loadingscreen.css';
 
 const LoadingScreen = ({ progress = 0 }) => {
   return (

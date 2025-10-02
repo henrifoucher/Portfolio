@@ -4,6 +4,7 @@ import { mat4, quat, vec2, vec3 } from 'gl-matrix';
 import { PerformanceMonitor, VisibilityManager, ResourceManager } from '../utils/performanceUtils.js';
 import '../styles/home.css';
 import ScrambleText from '../components/ScrambleText.jsx';
+import LoadingScreen from '../components/LoadingScreen.jsx';
 
 export async function clientLoader() {
   try {
@@ -1192,6 +1193,81 @@ export default function InfiniteMenu() {
   const navigate = useNavigate();
   const [activeItem, setActiveItem] = useState(null);
   const [isMoving, setIsMoving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+
+  // Asset preloading function
+  const preloadAssets = (items, onProgress) => {
+    return new Promise((resolve) => {
+      const totalAssets = items.length * 2; // Each item has video + image
+      let loadedAssets = 0;
+
+      const updateProgress = () => {
+        loadedAssets++;
+        const progress = (loadedAssets / totalAssets) * 100;
+        onProgress(progress);
+        
+        if (loadedAssets >= totalAssets) {
+          resolve();
+        }
+      };
+
+      items.forEach((item) => {
+        // Preload video
+        if (item.video) {
+          const video = document.createElement('video');
+          video.crossOrigin = 'anonymous';
+          video.muted = true;
+          video.preload = 'metadata';
+          video.addEventListener('loadedmetadata', updateProgress, { once: true });
+          video.addEventListener('error', updateProgress, { once: true });
+          video.src = item.video;
+        } else {
+          updateProgress();
+        }
+
+        // Preload image
+        if (item.image) {
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.addEventListener('load', updateProgress, { once: true });
+          img.addEventListener('error', updateProgress, { once: true });
+          img.src = item.image;
+        } else {
+          updateProgress();
+        }
+      });
+
+      // Fallback timeout in case some assets don't load
+      setTimeout(() => {
+        resolve();
+      }, 15000); // 15 second timeout
+    });
+  };
+
+  useEffect(() => {
+    const loadProjectsAndAssets = async () => {
+      try {
+        // Preload videos and images
+        await preloadAssets(items, setLoadingProgress);
+        
+        // Small delay to ensure smooth transition
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 500);
+        
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+        setIsLoading(false);
+      }
+    };
+
+    if (items.length > 0) {
+      loadProjectsAndAssets();
+    } else {
+      setIsLoading(false);
+    }
+  }, [items]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -1202,7 +1278,7 @@ export default function InfiniteMenu() {
       setActiveItem(items[itemIndex]);
     };
 
-    if (canvas) {
+    if (canvas && !isLoading) {
       sketch = new InfiniteGridMenu(canvas, items.length ? items : defaultItems, handleActiveItem, setIsMoving, sk => {
         sketchRef.current = sk;
         sk.run();
@@ -1234,7 +1310,7 @@ export default function InfiniteMenu() {
       }
       sketchRef.current = null;
     };
-  }, [items]);
+  }, [items, isLoading]);
   
   // Add cleanup on unmount
   useEffect(() => {
@@ -1266,9 +1342,10 @@ export default function InfiniteMenu() {
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%', zIndex: 5 }}>
+      {isLoading && <LoadingScreen progress={loadingProgress} />}
       <canvas id="infinite-grid-menu-canvas" ref={canvasRef} />
 
-      {activeItem && (
+      {activeItem && !isLoading && (
         <>
 
           <h2 className={`face-title ${isMoving ? 'inactive' : 'active'}`}>
