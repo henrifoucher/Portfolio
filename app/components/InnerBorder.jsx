@@ -71,7 +71,7 @@ function InnerBorder({ width, height, activeItem }) {
                     </defs>
                     <g transform={`translate(${width / 2}, ${height / 2})`}>
                         <path
-                            fill={activeItem.color}
+                            fill={activeItem?.color || '#000000'}
                             d="M722.016 1084h-722l288-400h63l-32 340.5h84l-32-340.5h63.5zM351 684h-63V0h63zm83 0h-63V0h63z"
                             transform="translate(-361, -542)"
                         ></path>
@@ -94,60 +94,65 @@ function InnerBorder({ width, height, activeItem }) {
 
             {/* Layer 2 - Text */}
             <div className="layer-2" ref={layer2Ref}>
-                <div className='text'>
-                    <ScrambleText as="div" duration={1.2}>{activeItem.title}</ScrambleText>
-                    <ScrambleText as="div" duration={1.0}>{activeItem.title}</ScrambleText>
-                    <ScrambleText as="div" duration={0.8}>{activeItem.title}</ScrambleText>
-                    <ScrambleText as="div" duration={1.1}>{activeItem.title}</ScrambleText>
-                    <ScrambleText as="div" className='text__normal' duration={1.3}>{activeItem.title}</ScrambleText>
-                </div>
+                {activeItem && (
+                    <div className='text'>
+                        <ScrambleText as="div" duration={1.2}>{activeItem.title}</ScrambleText>
+                        <ScrambleText as="div" duration={1.0}>{activeItem.title}</ScrambleText>
+                        <ScrambleText as="div" duration={0.8}>{activeItem.title}</ScrambleText>
+                        <ScrambleText as="div" duration={1.1}>{activeItem.title}</ScrambleText>
+                        <ScrambleText as="div" className='text__normal' duration={1.3}>{activeItem.title}</ScrambleText>
+                    </div>
+                )}
             </div>
 
             {/* Layer 3 - Video */}
             <div className="layer-3" ref={layer3Ref}>
-                <div className='video-mask-container'>
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="724"
-                        height="541"
-                        fill="none"
-                        viewBox="0 0 724 541"
-                        className='video-mask-svg'
-                    >
-                        <defs>
-                            <mask
-                                id="video-mask"
-                                width="724"
-                                height="541"
-                                x="0"
-                                y="0"
-                                fill="#fff"
-                                maskUnits="userSpaceOnUse"
-                            >
-                                <path fill="#000" d="M0 0h724v541H0z"></path>
-                                <path fill="#fff" d="M723 64.892v474.832h-.135L651 533.436V58.593zm-85 467.407-92-8.05V267.724h92zm-105-9.187-362-31.671V365.724h362zm-375-32.808L1 476.568V197.724h157zM533 48.269v307.455H276V25.784zM263 354.724h-92v-157h92zM638 57.455v198.269h-92V49.406zM263 24.647v156.077H1V1.726z"></path>
-                            </mask>
-                        </defs>
-                    </svg>
-                    <video 
-                        className='masked-video' 
-                        src={activeItem.video}
-                        autoPlay
-                        loop
-                        muted
-                        preload="auto"
-                        playsInline
-                        webkit-playsinline="true"
-                        style={{
-                            imageRendering: 'high-quality'
-                        }}
-                    ></video>
-                </div>
+                {activeItem && activeItem.video && (
+                    <div className='video-mask-container'>
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="724"
+                            height="541"
+                            fill="none"
+                            viewBox="0 0 724 541"
+                            className='video-mask-svg'
+                        >
+                            <defs>
+                                <mask
+                                    id="video-mask"
+                                    width="724"
+                                    height="541"
+                                    x="0"
+                                    y="0"
+                                    fill="#fff"
+                                    maskUnits="userSpaceOnUse"
+                                >
+                                    <path fill="#000" d="M0 0h724v541H0z"></path>
+                                    <path fill="#fff" d="M723 64.892v474.832h-.135L651 533.436V58.593zm-85 467.407-92-8.05V267.724h92zm-105-9.187-362-31.671V365.724h362zm-375-32.808L1 476.568V197.724h157zM533 48.269v307.455H276V25.784zM263 354.724h-92v-157h92zM638 57.455v198.269h-92V49.406zM263 24.647v156.077H1V1.726z"></path>
+                                </mask>
+                            </defs>
+                        </svg>
+                        <video 
+                            className='masked-video' 
+                            src={activeItem.video}
+                            autoPlay
+                            loop
+                            muted
+                            preload="auto"
+                            playsInline
+                            style={{
+                                imageRendering: 'high-quality'
+                            }}
+                        ></video>
+                    </div>
+                )}
             </div>
 
             {/* Layer 4 - Image */}
             <div className="layer-4" ref={layer4Ref}>
-                <img className='image' src={activeItem.image} alt="" />
+                {activeItem && activeItem.image && (
+                    <img className='image' src={activeItem.image} alt="" />
+                )}
             </div>
 
             {/* Layer 5 - Additional decorative elements if needed */}

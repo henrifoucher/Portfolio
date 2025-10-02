@@ -5,7 +5,7 @@ import '../styles/projectDetail.css';
 
 export async function clientLoader({ params }) {
   try {
-    const response = await fetch('./projects.json');
+    const response = await fetch('/Portfolio/projects.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -25,17 +25,17 @@ export default function ProjectDetail() {
     return (
       <div className="not-found">
         <ScrambleText as="h1">Project Not Found</ScrambleText>
-        <Link to="/">← Back to Portfolio</Link>
+        <Link to="/Portfolio/">← Back to Portfolio</Link>
       </div>
     );
   }
 
   return (
     <div className="project-detail">
-      <Border />
+      <Border activeItem={project} />
       
       <div className="project-header">
-        <Link to="/" className="back-link">
+        <Link to="/Portfolio/" className="back-link">
           ← Back to Portfolio
         </Link>
         <ScrambleText as="h1" className="project-title">

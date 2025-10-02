@@ -26,11 +26,11 @@ function Border({ activeItem, children }) {
   }, []);
 
   const handleBackToOrigin = () => {
-    navigate('/');
+    navigate('/Portfolio/');
   };
 
   const handleOverlayClick = () => {
-    if (activeItem.link) {
+    if (activeItem && activeItem.link) {
       window.open(activeItem.link, '_blank');
     }
   };
@@ -49,7 +49,7 @@ function Border({ activeItem, children }) {
 
   return (
     <div>
-      <InnerBorder width={width} height={height} activeItem={activeItem} onClick={activeItem.link}/>
+      <InnerBorder width={width} height={height} activeItem={activeItem} onClick={activeItem?.link} />
       <svg
         width="100vw"
         height="100vh"

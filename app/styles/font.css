@@ -11,7 +11,7 @@
 
 @font-face {
   font-family: 'Thedus Condensed Light';
-  src: url('../../public/assets/thedus/Thedus-CondensedLight.otf') format('opentype');
+  src: url('/Portfolio/assets/thedus/Thedus-CondensedLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-stretch: condensed;
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: 'Thedus Wide';
-  src: url('../../public/assets/thedus/Thedus-Wide.otf') format('opentype');
+  src: url('/Portfolio/assets/thedus/Thedus-Wide.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-stretch: expanded;
@@ -27,7 +27,7 @@
 
 @font-face {
   font-family: 'Thedus Wide Light';
-  src: url('../../public/assets/thedus/Thedus-WideLight.otf') format('opentype');
+  src: url('/Portfolio/assets/thedus/Thedus-WideLight.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-stretch: expanded;
@@ -35,7 +35,7 @@
 
 @font-face {
   font-family: 'Thedus Stencil Condensed';
-  src: url('../../public/assets/thedus/Thedus-StencilCondensed.otf') format('opentype');
+  src: url('/Portfolio/assets/thedus/Thedus-StencilCondensed.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-stretch: condensed;
@@ -43,7 +43,7 @@
 
 @font-face {
   font-family: 'Thedus Stencil Wide';
-  src: url('../../public/assets/thedus/Thedus-StencilWide.otf') format('opentype');
+  src: url('/Portfolio/assets/thedus/Thedus-StencilWide.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-stretch: expanded;

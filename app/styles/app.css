@@ -1,0 +1,16 @@
+/* Ensure full height for the application */
+html,
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Make sure the root React Router outlet takes full height */
+#root {
+    height: 100%;
+}
+
+/* Ensure all route containers take full height */
+body>div {
+    height: 100%;
+}

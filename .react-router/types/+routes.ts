@@ -28,8 +28,8 @@ type RouteFiles = {
     id: "root";
     page: "/" | "/Portfolio" | "/Portfolio/project/:id";
   };
-  "routes/_index.jsx": {
-    id: "routes/_index";
+  "routes/home.jsx": {
+    id: "routes/home";
     page: "/Portfolio";
   };
   "routes/projectDetail.jsx": {

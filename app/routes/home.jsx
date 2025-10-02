@@ -9,7 +9,7 @@ import { applyScrambleToAllText } from '../utils/textScramble.js';
 
 export async function clientLoader() {
   try {
-    const response = await fetch('./projects.json');
+    const response = await fetch('/Portfolio/projects.json');
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -1270,7 +1270,7 @@ export default function InfiniteMenu() {
                 '.back-button', '.external-link',
                 '.face-title', '.action-button'
               ],
-              excludeSelectors: ['.loading', '.loading-screen *', '.class__name', '.year__number', '.class', '.name']
+              excludeSelectors: ['.loading', '.loading-screen *', '.class__name', '.year__number', '.class', '.name','.face-title *', '.action-button *']
             });
           }, 200);
         }, 500);
@@ -1348,7 +1348,7 @@ export default function InfiniteMenu() {
 
     if (projectIndex !== -1) {
       // Navigate to the project detail page using the index
-      navigate(`/project/${projectIndex}`);
+      navigate(`/Portfolio/project/${projectIndex}`);
     } else if (activeItem.link) {
       // Fallback to external link if it exists
       if (activeItem.link.startsWith('http')) {
