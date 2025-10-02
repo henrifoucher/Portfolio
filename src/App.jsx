@@ -20,8 +20,12 @@ function App() {
     const loadProjectsAndAssets = async () => {
       try {
         // Fetch projects data
-        const response = await fetch('./projects.json');
+        const response = await fetch(`${process.env.PUBLIC_URL}/projects.json`);
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
         const data = await response.json();
+        console.log('Projects loaded:', data);
         setSampleItems(data);
         
         // Preload videos and images
