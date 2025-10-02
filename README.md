@@ -1,5 +1,6 @@
 # Portfolio
 
+🌐 **[View Live Portfolio](https://henrifoucher.github.io/Portfolio)**
 
 A modern portfolio website built with React Router v7, WebGL, and modern web technologies.
 
