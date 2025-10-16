@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import ScrambleText from './ScrambleText.jsx';
-import '../styles/InnerBorder.css';
+import '../styles/innerborder.css';
 
 function InnerBorder({ width, height, activeItem }) {
     const containerRef = useRef(null);
