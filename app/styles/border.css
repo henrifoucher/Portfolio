@@ -1,0 +1,569 @@
+/* SVG Animation Keyframes for white lines only */
+@keyframes drawPathLoop {
+    0% {
+        stroke-dashoffset: 1000;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+    }
+
+    100% {
+        stroke-dashoffset: -1000;
+    }
+}
+
+/* Fun color wave animation for lines */
+@keyframes colorWave {
+    0% {
+        background-color: #fff;
+    }
+
+    50% {
+        background-color: #000;
+    }
+
+    100% {
+        background-color: #fff;
+    }
+}
+
+@keyframes colorWaveBefore {
+    0% {
+        border-bottom: 0.375rem solid #000;
+        border-left: 0.4rem solid #000;
+    }
+
+    50% {
+        border-bottom: 0.375rem solid #fff;
+        border-left: 0.4rem solid #fff;
+    }
+
+    100% {
+        border-bottom: 0.375rem solid #000;
+        border-left: 0.4rem solid #000;
+    }
+}
+
+/* Year element animations */
+@keyframes yearColorWave {
+    0% {
+        background-color: #fff;
+    }
+
+    50% {
+        background-color: #000;
+    }
+
+    100% {
+        background-color: #fff;
+    }
+}
+
+@keyframes yearBeforeWave {
+    0% {
+        border-bottom: 1.25rem solid #000;
+        border-left: 0.46rem solid #000;
+    }
+
+    50% {
+        border-bottom: 1.25rem solid #fff;
+        border-left: 0.46rem solid #fff;
+    }
+
+    100% {
+        border-bottom: 1.25rem solid #000;
+        border-left: 0.46rem solid #000;
+    }
+}
+
+@keyframes yearAfterWave {
+    0% {
+        border-top: 1.25rem solid #000;
+        border-right: 0.46rem solid #000;
+    }
+
+    50% {
+        border-top: 1.25rem solid #fff;
+        border-right: 0.46rem solid #fff;
+    }
+
+    100% {
+        border-top: 1.25rem solid #000;
+        border-right: 0.46rem solid #000;
+    }
+}
+
+/* SVG Animation Classes - Only for thin white lines */
+.svg-top-line {
+    stroke-dasharray: 500;
+    animation: drawPathLoop 4s ease-in-out infinite;
+}
+
+.svg-left-line {
+    stroke-dasharray: 500;
+    animation: drawPathLoop 4.5s ease-in-out infinite;
+}
+
+.svg-bottom-line {
+    stroke-dasharray: 500;
+    animation: drawPathLoop 4.2s ease-in-out infinite;
+}
+
+.svg-right-vertical-line {
+    stroke-dasharray: 100;
+    animation: drawPathLoop 8s ease-in-out infinite;
+}
+
+.svg-right-horizontal-line {
+    stroke-dasharray: 100;
+    animation: drawPathLoop 8.5s ease-in-out infinite;
+}
+
+/* Portfolio title */
+.title {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-thedus-wide);
+    color: white;
+    text-align: center;
+    font-size: 1.rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    letter-spacing: 0.8125rem;
+    z-index: 100;
+    margin: 0;
+}
+
+/* Project status */
+.status {
+    position: absolute;
+    top: 2.25rem;
+    left: 2.5rem;
+    font-family: var(--font-thedus-condensed-light);
+    color: #000;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 105%;
+    margin: 0;
+}
+.status:hover{
+    text-decoration: underline;
+}
+
+/* Japanese text */
+.japanese {
+    position: absolute;
+    top: 4.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-thedus);
+    color: #000;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    /* 0.75rem */
+    letter-spacing: 0.6rem;
+    margin: 0;
+}
+
+/* Date and time */
+.date {
+    position: absolute;
+    bottom: 6rem;
+    left: 2rem;
+    font-family: var(--font-thedus-condensed);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.1rem;
+    margin: 0;
+}
+
+/* Year */
+.year {
+    position: absolute;
+    top: 2rem;
+    right: 0rem;
+    display: flex;
+}
+
+.year__number {
+    position: relative;
+    font-family: var(--font-thedus-wide-light);
+    color: #000;
+    background-color: #fff;
+    text-align: center;
+    font-size: 2.25rem;
+    height: 2.5rem;
+    font-style: normal;
+    font-weight: 300;
+    padding: 0rem 0.75rem;
+    margin-right: 1.25rem;
+}
+
+.year__number::before {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    content: '';
+    border-bottom: 1.25rem solid #fff;
+    border-left: 0.46rem solid #fff;
+    border-top: 1.25rem solid transparent;
+    border-right: 0.46rem solid transparent;
+}
+
+.year__number::after {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    content: '';
+    border-top: 1.25rem solid #fff;
+    border-right: 0.46rem solid #fff;
+    border-bottom: 1.25rem solid transparent;
+    border-left: 0.46rem solid transparent;
+}
+
+.year__2,
+.year__3,
+.year__4,
+.year__5,
+.year__6 {
+    position: relative;
+    font-family: var(--font-thedus-wide-light);
+    background-color: #fff;
+    text-align: center;
+    font-size: 2.25rem;
+    height: 2.5rem;
+    font-style: normal;
+    font-weight: 300;
+    padding: 0rem 0.05rem;
+    margin-right: 1.25rem;
+    animation: yearColorWave 3s ease-in-out infinite;
+}
+
+.year__2 {
+    animation-delay: 0s;
+}
+
+.year__3 {
+    animation-delay: 0.3s;
+}
+
+.year__4 {
+    animation-delay: 0.6s;
+}
+
+.year__5 {
+    animation-delay: 0.9s;
+}
+
+.year__6 {
+    animation-delay: 1.2s;
+}
+
+.year__6 {
+    margin-right: 0;
+}
+
+.year__2::before,
+.year__3::before,
+.year__4::before,
+.year__5::before {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    content: '';
+    border-bottom: 1.25rem solid #fff;
+    border-left: 0.46rem solid #fff;
+    border-top: 1.25rem solid transparent;
+    border-right: 0.46rem solid transparent;
+    animation: yearBeforeWave 3s ease-in-out infinite;
+}
+
+.year__2::before {
+    animation-delay: 1.8s;
+}
+
+.year__3::before {
+    animation-delay: 2.1s;
+}
+
+.year__4::before {
+    animation-delay: 2.4s;
+}
+
+.year__5::before {
+    animation-delay: 2.7s;
+}
+
+.year__2::after,
+.year__3::after,
+.year__4::after,
+.year__5::after,
+.year__6::after {
+    position: absolute;
+    top: 0;
+    right: 100%;
+    width: 0;
+    height: 0;
+    content: '';
+    border-top: 1.25rem solid #fff;
+    border-right: 0.46rem solid #fff;
+    border-bottom: 1.25rem solid transparent;
+    border-left: 0.46rem solid transparent;
+    animation: yearAfterWave 3s ease-in-out infinite;
+}
+
+.year__2::after {
+    animation-delay: 1.5s;
+}
+
+.year__3::after {
+    animation-delay: 1.8s;
+}
+
+.year__4::after {
+    animation-delay: 2.1s;
+}
+
+.year__5::after {
+    animation-delay: 2.4s;
+}
+
+.year__6::after {
+    animation-delay: 2.7s;
+}
+
+.lines {
+    position: absolute;
+    left: 2rem;
+    bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.line__1,
+.line__2,
+.line__3,
+.line__4,
+.line__5,
+.line__6,
+.line__7 {
+    position: relative;
+    font-family: var(--font-thedus-wide-light);
+    background-color: #fff;
+    text-align: center;
+    font-size: 2.25rem;
+    height: 0.75rem;
+    /* further reduced height */
+    font-style: normal;
+    font-weight: 300;
+    margin-bottom: 0.325rem;
+    animation: colorWave 3s ease-in-out infinite;
+}
+
+.line__1::before,
+.line__2::before,
+.line__3::before,
+.line__4::before,
+.line__5::before,
+.line__6::before,
+.line__7::before {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 0;
+    content: '';
+    border-bottom: 0.375rem solid #fff;
+    /* further reduced height */
+    border-left: 0.4rem solid #fff;
+    border-top: 0.375rem solid transparent;
+    /* further reduced height */
+    border-right: 0.4rem solid transparent;
+    animation: colorWaveBefore 3s ease-in-out infinite;
+}
+
+.line__1::before {
+    animation-delay: 1.6s;
+}
+
+.line__2::before {
+    animation-delay: 1.8s;
+}
+
+.line__3::before {
+    animation-delay: 2s;
+}
+
+.line__4::before {
+    animation-delay: 2.2s;
+}
+
+.line__5::before {
+    animation-delay: 2.4s;
+}
+
+.line__6::before {
+    animation-delay: 2.6s;
+}
+
+.line__7::before {
+    animation-delay: 2.8s;
+}
+
+.line__1 {
+    width: 1rem;
+    padding: 0;
+    animation-delay: 0s;
+}
+
+.line__2 {
+    width: 2.05rem;
+    padding: 0;
+    animation-delay: 0.2s;
+}
+
+.line__3 {
+    width: 3.1rem;
+    padding: 0;
+    animation-delay: 0.4s;
+}
+
+.line__4 {
+    width: 4.15rem;
+    padding: 0;
+    animation-delay: 0.6s;
+}
+
+.line__5 {
+    width: 5.2rem;
+    padding: 0;
+    animation-delay: 0.8s;
+}
+
+.line__6 {
+    width: 6.25rem;
+    padding: 0;
+    animation-delay: 1s;
+}
+
+.line__7 {
+    width: 7.3rem;
+    padding: 0;
+    animation-delay: 1.2s;
+}
+
+.line__7 {
+    width: 7.3rem;
+    padding: 0;
+}
+
+.line__7 {
+    margin-bottom: 0rem;
+}
+
+/* Class information */
+.class {
+    position: absolute;
+    bottom: 2rem;
+    left: 11.5rem;
+    display: flex;
+    gap: .5rem;
+    line-height: center;
+}
+
+.class__name {
+    font-family: var(--font-thedus-wide-light);
+    color: #000;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 100%;
+    padding: 0rem .25rem;
+    background-color: #fff;
+    margin: 0;
+    line-height: center;
+}
+
+.class__detail {
+    width: 0;
+    height: 0;
+    border-bottom: 1.25rem solid #fff;
+    /* height matches .class__name font-size */
+    border-right: 1.25rem solid transparent;
+    /* width matches .class__name font-size */
+    border-left: 0 solid transparent;
+    border-top: 0 solid transparent;
+    margin-right: 0.25rem;
+}
+
+/* Name */
+.name {
+    position: absolute;
+    bottom: 2rem;
+    right: 50%;
+    transform: translateX(50%);
+    font-family: var(--font-thedus);
+    color: #fff;
+    text-align: center;
+    font-size: 2.5rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+    margin: 0;
+}
+
+.info__title {
+    position: absolute;
+    bottom: 16.75rem;
+    right: 3rem;
+    transform: translate(0%, 100%);
+    font-family: var(--font-thedus-wide);
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 100%;
+    /* 1.25rem */
+}
+
+.info__description {
+    position: absolute;
+    bottom: 13.5rem;
+    right: 3rem;
+    width: 24rem;
+    transform: translate(0%, 100%);
+    color: #000;
+    font-family: var(--font-thedus-condensed-light);
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 130%;
+    /* 1.1375rem */
+}
+
+/* Mouse follower circular text animation */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.circular-text-follower {
+    animation: rotate 10s linear infinite;
+}
