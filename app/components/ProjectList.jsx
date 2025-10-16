@@ -5,7 +5,8 @@ const ProjectList = () => {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        fetch('/projects.json')
+        const base = import.meta.env.BASE_URL || '/';
+        fetch(`${base}projects.json`)
             .then(response => response.json())
             .then(data => setProjects(data));
     }, []);
@@ -24,10 +25,10 @@ const ProjectList = () => {
         <div className="project-list">
             {projects.map((project, index) => (
                 <div key={index} className="project-card" style={{ backgroundColor: project.color }}>
-                    <img src={project.image} alt={project.title} />
+                    <img src={project.image && (project.image.startsWith('http') ? project.image : `${import.meta.env.BASE_URL || '/'}${project.image.replace(/^\/+/, '')}`)} alt={project.title} />
                     <h2>{project.title}</h2>
                     <p>{project.year}</p>
-                    <img src={project.cover} alt={`${project.title} cover`} className="project-cover" />
+                    <img src={project.cover && (project.cover.startsWith('http') ? project.cover : `${import.meta.env.BASE_URL || '/'}${project.cover.replace(/^\/+/, '')}`)} alt={`${project.title} cover`} className="project-cover" />
                 </div>
             ))}
         </div>

@@ -7,9 +7,20 @@ import ScrambleText from '../components/ScrambleText.jsx';
 import LoadingScreen from '../components/LoadingScreen.jsx';
 import { applyScrambleToAllText } from '../utils/textScramble.js';
 
+// Helper to resolve asset URLs relative to the app's base (works with Vite's base)
+function resolveAssetPath(path) {
+  if (!path) return path;
+  // Leave absolute URLs as-is
+  if (/^(https?:|\/\/)/.test(path)) return path;
+  const base = import.meta.env.BASE_URL || '/';
+  return `${base}${path.replace(/^\/+/, '')}`;
+}
+
 export async function clientLoader() {
   try {
-    const response = await fetch('/Portfolio/projects.json');
+    // Use Vite base URL so fetching works in both dev and when deployed to GitHub Pages
+    const base = import.meta.env.BASE_URL || '/';
+    const response = await fetch(`${base}projects.json`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
@@ -826,7 +837,7 @@ class InfiniteGridMenu {
               resolve(fallbackCanvas);
             }, 10000); // 10 second timeout
 
-            img.src = item.cover;
+            img.src = resolveAssetPath(item.cover);
           })
       )
     ).then(images => {
@@ -1159,24 +1170,24 @@ export default function InfiniteMenu() {
       };
 
       items.forEach((item) => {
-        // Preload cover image
-        if (item.cover) {
-          const img = new Image();
-          img.crossOrigin = 'anonymous';
-          img.addEventListener('load', updateProgress, { once: true });
-          img.addEventListener('error', updateProgress, { once: true });
-          img.src = item.cover;
+          // Preload cover image
+          if (item.cover) {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.addEventListener('load', updateProgress, { once: true });
+            img.addEventListener('error', updateProgress, { once: true });
+            img.src = resolveAssetPath(item.cover);
         } else {
           updateProgress();
         }
 
-        // Preload image
-        if (item.image) {
-          const img = new Image();
-          img.crossOrigin = 'anonymous';
-          img.addEventListener('load', updateProgress, { once: true });
-          img.addEventListener('error', updateProgress, { once: true });
-          img.src = item.image;
+          // Preload image
+          if (item.image) {
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.addEventListener('load', updateProgress, { once: true });
+            img.addEventListener('error', updateProgress, { once: true });
+            img.src = resolveAssetPath(item.image);
         } else {
           updateProgress();
         }
